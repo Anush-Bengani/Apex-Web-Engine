@@ -36,32 +36,50 @@ Instead of rebuilding every site from scratch, this system uses **modular compon
 ## Folder Structure
 
 ```
-engine/
- ├─ css/
- │   ├─ tokens.css
- │   ├─ typography.css
- │   └─ components.css
- │
- ├─ js/
- │   └─ aura.js
- │
- └─ components/
-     ├─ navbar.html
-     ├─ hero.html
-     ├─ feature-cards.html
-     ├─ service-cards.html
-     ├─ product-cards.html
-     ├─ testimonials.html
-     ├─ gallery.html
-     ├─ contact-form.html
-     ├─ cta-banner.html
-     └─ footer.html
-
-templates/
- ├─ restaurant/
- ├─ hotel/
- ├─ ecommerce/
- └─ corporate/
+apex-website-engine/
+│
+├─ engine/
+│  ├─ css/
+│  │  ├─ tokens.css
+│  │  ├─ typography.css
+│  │  └─ components.css
+│  │
+│  ├─ js/
+│  │  └─ aura.js
+│  │
+│  └─ components/
+│     ├─ navbar.html
+│     ├─ hero.html
+│     ├─ feature-cards.html
+│     ├─ service-cards.html
+│     ├─ product-cards.html
+│     ├─ testimonials.html
+│     ├─ gallery.html
+│     ├─ contact-form.html
+│     ├─ cta-banner.html
+│     └─ footer.html
+│
+├─ templates/
+│  ├─ restaurant/
+│  │  └─ index.html
+│  │
+│  ├─ hotel/
+│  │  └─ index.html
+│  │
+│  ├─ ecommerce/
+│  │  └─ index.html
+│  │
+│  └─ corporate/
+│     └─ index.html
+│
+├─ demo/
+│  └─ index.html
+│
+├─ docs/
+│  └─ architecture.md
+│
+├─ README.md
+└─ LICENSE
 ```
 
 ---
