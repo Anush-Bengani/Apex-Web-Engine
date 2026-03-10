@@ -1,59 +1,41 @@
-<!-- ============================================================
-     FILE: components/cta-banner.html
-     Aura Design System — CTA Banner Component
-     Variants: full-width | split | minimal
-     ============================================================ -->
+<section class="cta-banner" aria-labelledby="cta-heading">
 
-<!-- VARIANT A: Full-width dark banner -->
-
-<section class="cta-banner cta-banner--dark section" aria-labelledby="cta-heading">
-  <div class="container">
-    <div class="cta-banner__inner reveal">
+  <div class="cta-banner__inner container">
 
 ```
-  <div class="cta-banner__content">
-    <p class="t-overline cta-banner__eyebrow">Ready to begin?</p>
-    <h2 class="t-h1 cta-banner__heading" id="cta-heading">
-      Your next chapter<br>
-      <em class="t-italic">starts here.</em>
-    </h2>
-    <p class="t-body-lg cta-banner__sub">
-      Join hundreds of premium brands already building with Aura. Launch in days, not months.
-    </p>
-  </div>
+<span class="cta-banner__label" data-content="cta.label"></span>
 
-  <div class="cta-banner__actions">
-    <a href="#contact" class="btn btn--accent btn--lg">Start Your Project</a>
-    <a href="#work" class="btn btn--outline btn--lg cta-banner__secondary">See Our Work</a>
-  </div>
+<h2
+  class="cta-banner__title"
+  id="cta-heading"
+  data-content="cta.title"
+></h2>
 
+<p
+  class="cta-banner__desc"
+  data-content="cta.description"
+></p>
+
+<div class="cta-banner__actions btn-group">
+  <a
+    class="btn btn--primary btn--lg"
+    data-content="cta.primaryCtaLabel"
+    data-content-attr-href="cta.primaryCtaUrl"
+    href="#"
+    aria-label=""
+    data-content-attr-aria-label="cta.primaryCtaAriaLabel"
+  ></a>
+  <a
+    class="btn btn--secondary btn--lg"
+    data-content="cta.secondaryCtaLabel"
+    data-content-attr-href="cta.secondaryCtaUrl"
+    href="#"
+    aria-label=""
+    data-content-attr-aria-label="cta.secondaryCtaAriaLabel"
+  ></a>
 </div>
 ```
 
   </div>
 
-  <!-- Background decoration -->
-
-  <div class="cta-banner__bg-shape" aria-hidden="true"></div>
-</section>
-
-<!-- VARIANT B: Accent color banner (lighter) -->
-
-<section class="cta-banner cta-banner--accent section--sm" aria-labelledby="cta-b-heading" style="display:none;">
-  <div class="container">
-    <div class="cta-banner__split grid">
-      <div class="col-8 reveal reveal--left">
-        <h2 class="t-h2 cta-banner__heading--accent" id="cta-b-heading">
-          Have a project in mind? Let's make it real.
-        </h2>
-        <p class="t-body cta-banner__sub--accent">
-          Speak with our team today. No obligation, just a conversation.
-        </p>
-      </div>
-      <div class="col-4 cta-banner__split-action reveal reveal--right">
-        <a href="#contact" class="btn btn--primary btn--lg">Book a Free Call</a>
-        <p class="t-caption" style="margin-top: var(--space-sm);">Usually responds in &lt; 2 hours</p>
-      </div>
-    </div>
-  </div>
 </section>
