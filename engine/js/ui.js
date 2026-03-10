@@ -1,5 +1,5 @@
 /* ============================================================
-   APEX Website Engine — ui.js
+   APEX Website Engine - ui.js
    UI Interaction Handlers
    ============================================================ */
 
@@ -7,17 +7,49 @@
 
 const UI = (() => {
 
-  const { qs, qsa, on, addClass, removeClass, toggleClass, hasClass,
-          attr, removeAttr, throttle, debounce, scrollToTop, getScrollY } = Aura;
+  const qs           = (s, r) => (r || document).querySelector(s);
+  const qsa          = (s, r) => Array.from((r || document).querySelectorAll(s));
+  const on           = (el, ev, fn, opts) => el && el.addEventListener(ev, fn, opts || false);
+  const addClass     = (el, ...c) => el && el.classList.add(...c);
+  const removeClass  = (el, ...c) => el && el.classList.remove(...c);
+  const toggleClass  = (el, c, f) => el && el.classList.toggle(c, f);
+  const hasClass     = (el, c)    => el ? el.classList.contains(c) : false;
+  const attr         = (el, n, v) => v !== undefined ? el.setAttribute(n, v) : el && el.getAttribute(n);
+  const removeAttr   = (el, n)    => el && el.removeAttribute(n);
+
+  const throttle = (fn, wait) => {
+    wait = wait || 100;
+    let last = 0;
+    return function() {
+      const now = Date.now();
+      if (now - last >= wait) { last = now; fn.apply(this, arguments); }
+    };
+  };
+
+  const debounce = (fn, wait) => {
+    wait = wait || 200;
+    let timer;
+    return function() {
+      const args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(() => fn.apply(this, args), wait);
+    };
+  };
+
+  const getScrollY = () => window.scrollY || document.documentElement.scrollTop;
+
+  const scrollToTop = (behavior) => {
+    window.scrollTo({ top: 0, behavior: behavior || 'smooth' });
+  };
 
   /* ----------------------------------------------------------
      STATE
   ---------------------------------------------------------- */
 
   const state = {
-    navOpen:         false,
-    lastScrollY:     0,
-    scrollTopVisible: false,
+    navOpen: false,
+    lastScrollY: 0,
+    scrollTopVisible: false
   };
 
   /* ----------------------------------------------------------
@@ -25,9 +57,9 @@ const UI = (() => {
   ---------------------------------------------------------- */
 
   const initMobileNav = () => {
-    const navbar  = qs('.navbar');
-    const toggle  = qs('[data-action="toggle-nav"]');
-    const drawer  = qs('.navbar__drawer');
+    const navbar = qs('.navbar');
+    const toggle = qs('[data-action="toggle-nav"]');
+    const drawer = qs('.navbar__drawer');
 
     if (!navbar || !toggle || !drawer) return;
 
@@ -38,10 +70,9 @@ const UI = (() => {
       attr(toggle, 'aria-expanded', 'true');
       attr(toggle, 'aria-label', 'Close navigation menu');
       addClass(document.body, 'nav-open');
-
       const bars = qsa('.navbar__toggle-bar', toggle);
       if (bars[0]) bars[0].style.transform = 'translateY(7px) rotate(45deg)';
-      if (bars[1]) bars[1].style.opacity   = '0';
+      if (bars[1]) bars[1].style.opacity = '0';
       if (bars[2]) bars[2].style.transform = 'translateY(-7px) rotate(-45deg)';
     };
 
@@ -51,15 +82,11 @@ const UI = (() => {
       attr(toggle, 'aria-expanded', 'false');
       attr(toggle, 'aria-label', 'Open navigation menu');
       removeClass(document.body, 'nav-open');
-
       const bars = qsa('.navbar__toggle-bar', toggle);
       if (bars[0]) bars[0].style.transform = '';
-      if (bars[1]) bars[1].style.opacity   = '';
+      if (bars[1]) bars[1].style.opacity = '';
       if (bars[2]) bars[2].style.transform = '';
-
-      setTimeout(() => {
-        if (!state.navOpen) attr(drawer, 'hidden', '');
-      }, 400);
+      setTimeout(() => { if (!state.navOpen) attr(drawer, 'hidden', ''); }, 400);
     };
 
     on(toggle, 'click', () => state.navOpen ? close() : open());
@@ -83,7 +110,7 @@ const UI = (() => {
   };
 
   /* ----------------------------------------------------------
-     2. STICKY HEADER / SCROLL BEHAVIOUR
+     2. STICKY HEADER
   ---------------------------------------------------------- */
 
   const initStickyNav = () => {
@@ -93,9 +120,20 @@ const UI = (() => {
     const SCROLL_THRESHOLD = 50;
     const HIDE_THRESHOLD   = 120;
 
+    const style = document.createElement('style');
+    style.textContent = [
+      '.navbar {',
+      '  transition: transform 0.35s cubic-bezier(0,0,0.2,1),',
+      '              background-color 0.3s ease,',
+      '              box-shadow 0.3s ease;',
+      '}',
+      '.navbar--hidden { transform: translateY(-110%); }'
+    ].join('\n');
+    document.head.appendChild(style);
+
     const update = throttle(() => {
       const currentY = getScrollY();
-      const scrolled  = currentY > SCROLL_THRESHOLD;
+      const scrolled = currentY > SCROLL_THRESHOLD;
       const scrollingDown = currentY > state.lastScrollY;
       const delta = Math.abs(currentY - state.lastScrollY);
 
@@ -111,38 +149,23 @@ const UI = (() => {
     }, 80);
 
     on(window, 'scroll', update, { passive: true });
-
-    const style = document.createElement('style');
-    style.textContent = `
-      .navbar {
-        transition: transform 0.35s cubic-bezier(0, 0, 0.2, 1),
-                    background-color 0.3s ease,
-                    box-shadow 0.3s ease;
-      }
-      .navbar--hidden {
-        transform: translateY(-110%);
-      }
-    `;
-    document.head.appendChild(style);
   };
 
   /* ----------------------------------------------------------
-     3. ACTIVE NAV LINK HIGHLIGHTING
+     3. ACTIVE NAV LINKS
   ---------------------------------------------------------- */
 
   const initActiveNavLinks = () => {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const links = qsa('.navbar__nav-link, .navbar__drawer-nav .navbar__nav-link');
 
-    links.forEach(link => {
+    links.forEach(function(link) {
       const href = link.getAttribute('href') || '';
       const page = href.split('/').pop();
+      const isHome = (currentPage === '' || currentPage === 'index.html');
+      const linkIsHome = (page === '' || page === 'index.html');
 
-      if (
-        page === currentPage ||
-        (currentPage === '' && (page === 'index.html' || page === '')) ||
-        (currentPage === 'index.html' && (page === '' || page === 'index.html'))
-      ) {
+      if (page === currentPage || (isHome && linkIsHome)) {
         addClass(link, 'active');
         attr(link, 'aria-current', 'page');
       }
@@ -150,7 +173,7 @@ const UI = (() => {
   };
 
   /* ----------------------------------------------------------
-     4. SCROLL-TO-TOP BUTTON
+     4. SCROLL TO TOP BUTTON
   ---------------------------------------------------------- */
 
   const initScrollToTop = () => {
@@ -161,46 +184,43 @@ const UI = (() => {
     btn.id = 'scroll-top-btn';
     btn.type = 'button';
     btn.setAttribute('aria-label', 'Scroll to top');
-    btn.innerHTML = '<span aria-hidden="true">↑</span>';
+    btn.innerHTML = '<span aria-hidden="true">&#8593;</span>';
 
     const style = document.createElement('style');
-    style.textContent = `
-      #scroll-top-btn {
-        position: fixed;
-        bottom: 2rem;
-        right: 2rem;
-        width: 3rem;
-        height: 3rem;
-        border-radius: 50%;
-        background: var(--gradient-accent, linear-gradient(135deg, #0EA5E9, #38BDF8));
-        color: var(--color-primary, #0A0F1E);
-        font-size: 1.25rem;
-        font-weight: 700;
-        border: none;
-        cursor: pointer;
-        z-index: var(--z-toast, 500);
-        box-shadow: var(--shadow-accent, 0 8px 30px -4px rgba(56,189,248,0.35));
-        opacity: 0;
-        transform: translateY(12px) scale(0.9);
-        transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-        pointer-events: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      #scroll-top-btn.visible {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        pointer-events: auto;
-      }
-      #scroll-top-btn:hover {
-        transform: translateY(-3px) scale(1.08);
-        box-shadow: 0 12px 36px -4px rgba(56,189,248,0.5);
-      }
-      #scroll-top-btn:active {
-        transform: scale(0.96);
-      }
-    `;
+    style.textContent = [
+      '#scroll-top-btn {',
+      '  position: fixed;',
+      '  bottom: 2rem;',
+      '  right: 2rem;',
+      '  width: 3rem;',
+      '  height: 3rem;',
+      '  border-radius: 50%;',
+      '  background: linear-gradient(135deg, #0EA5E9, #38BDF8);',
+      '  color: #0A0F1E;',
+      '  font-size: 1.25rem;',
+      '  font-weight: 700;',
+      '  border: none;',
+      '  cursor: pointer;',
+      '  z-index: 500;',
+      '  box-shadow: 0 8px 30px -4px rgba(56,189,248,0.35);',
+      '  opacity: 0;',
+      '  transform: translateY(12px) scale(0.9);',
+      '  transition: opacity 0.3s ease, transform 0.3s ease;',
+      '  pointer-events: none;',
+      '  display: flex;',
+      '  align-items: center;',
+      '  justify-content: center;',
+      '}',
+      '#scroll-top-btn.visible {',
+      '  opacity: 1;',
+      '  transform: translateY(0) scale(1);',
+      '  pointer-events: auto;',
+      '}',
+      '#scroll-top-btn:hover {',
+      '  transform: translateY(-3px) scale(1.08);',
+      '}'
+    ].join('\n');
+
     document.head.appendChild(style);
     document.body.appendChild(btn);
 
@@ -223,42 +243,35 @@ const UI = (() => {
   ---------------------------------------------------------- */
 
   const initGallery = () => {
-    const lightbox = qs('#gallery-lightbox');
-    const lightboxImg = qs('[data-lightbox-target]', lightbox);
-    const closeBtn = qs('[data-action="close-lightbox"]', lightbox);
+    const lightbox    = qs('#gallery-lightbox');
+    const lightboxImg = qs('[data-lightbox-target]');
+    const closeBtn    = qs('[data-action="close-lightbox"]');
 
-    const galleryImages = qsa('.gallery__item img.gallery__image');
-
-    if (!lightbox || !lightboxImg || !galleryImages.length) return;
+    if (!lightbox || !lightboxImg) return;
 
     const openLightbox = (src, alt) => {
       lightboxImg.src = src;
       lightboxImg.alt = alt || '';
       removeClass(lightbox, 'open');
       removeAttr(lightbox, 'hidden');
-
       requestAnimationFrame(() => {
         requestAnimationFrame(() => addClass(lightbox, 'open'));
       });
-
       attr(lightbox, 'aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
-
-      setTimeout(() => closeBtn?.focus(), 100);
+      if (closeBtn) setTimeout(() => closeBtn.focus(), 100);
     };
 
     const closeLightbox = () => {
       removeClass(lightbox, 'open');
       attr(lightbox, 'aria-hidden', 'true');
       document.body.style.overflow = '';
-
       setTimeout(() => attr(lightbox, 'hidden', ''), 300);
     };
 
     qsa('[data-action="open-lightbox"]').forEach(item => {
       const img = qs('img', item);
       if (!img) return;
-
       on(item, 'click', () => openLightbox(img.src, img.alt));
       on(item, 'keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -280,44 +293,38 @@ const UI = (() => {
   };
 
   /* ----------------------------------------------------------
-     6. BUTTON RIPPLE EFFECT
+     6. BUTTON RIPPLE
   ---------------------------------------------------------- */
 
   const initButtonEffects = () => {
     const style = document.createElement('style');
-    style.textContent = `
-      .btn { position: relative; overflow: hidden; }
-      .btn__ripple {
-        position: absolute;
-        border-radius: 50%;
-        transform: scale(0);
-        animation: btn-ripple 0.55s linear;
-        background: rgba(255, 255, 255, 0.22);
-        pointer-events: none;
-      }
-      @keyframes btn-ripple {
-        to { transform: scale(4); opacity: 0; }
-      }
-    `;
+    style.textContent = [
+      '.btn { position: relative; overflow: hidden; }',
+      '.btn__ripple {',
+      '  position: absolute;',
+      '  border-radius: 50%;',
+      '  transform: scale(0);',
+      '  animation: btn-ripple 0.55s linear;',
+      '  background: rgba(255,255,255,0.22);',
+      '  pointer-events: none;',
+      '}',
+      '@keyframes btn-ripple { to { transform: scale(4); opacity: 0; } }'
+    ].join('\n');
     document.head.appendChild(style);
 
     on(document, 'click', (e) => {
       const btn = e.target.closest('.btn');
       if (!btn) return;
-
-      const circle = document.createElement('span');
+      const circle   = document.createElement('span');
       const diameter = Math.max(btn.clientWidth, btn.clientHeight);
-      const rect = btn.getBoundingClientRect();
-
-      circle.className = 'btn__ripple';
-      circle.style.width  = `${diameter}px`;
-      circle.style.height = `${diameter}px`;
-      circle.style.left   = `${e.clientX - rect.left  - diameter / 2}px`;
-      circle.style.top    = `${e.clientY - rect.top   - diameter / 2}px`;
-
+      const rect     = btn.getBoundingClientRect();
+      circle.className    = 'btn__ripple';
+      circle.style.width  = diameter + 'px';
+      circle.style.height = diameter + 'px';
+      circle.style.left   = (e.clientX - rect.left  - diameter / 2) + 'px';
+      circle.style.top    = (e.clientY - rect.top   - diameter / 2) + 'px';
       const existing = btn.querySelector('.btn__ripple');
       if (existing) existing.remove();
-
       btn.appendChild(circle);
       circle.addEventListener('animationend', () => circle.remove(), { once: true });
     });
@@ -332,15 +339,17 @@ const UI = (() => {
     if (!form) return;
 
     const showError = (field, msg) => {
-      const errorEl = qs(`#${field.id}-error`);
-      field.closest('.form__field')?.classList.add('has-error');
+      const errorEl = qs('#' + field.id + '-error');
+      const wrap = field.closest('.form__field');
+      if (wrap) wrap.classList.add('has-error');
       if (errorEl) errorEl.textContent = msg;
       attr(field, 'aria-invalid', 'true');
     };
 
     const clearError = (field) => {
-      const errorEl = qs(`#${field.id}-error`);
-      field.closest('.form__field')?.classList.remove('has-error');
+      const errorEl = qs('#' + field.id + '-error');
+      const wrap = field.closest('.form__field');
+      if (wrap) wrap.classList.remove('has-error');
       if (errorEl) errorEl.textContent = '';
       removeAttr(field, 'aria-invalid');
     };
@@ -352,8 +361,8 @@ const UI = (() => {
         return false;
       }
       if (field.type === 'email' && field.value) {
-        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRe.test(field.value)) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!re.test(field.value)) {
           showError(field, 'Please enter a valid email address.');
           return false;
         }
@@ -364,7 +373,8 @@ const UI = (() => {
     qsa('input, textarea, select', form).forEach(field => {
       on(field, 'blur', () => validateField(field));
       on(field, 'input', () => {
-        if (hasClass(field.closest('.form__field'), 'has-error')) validateField(field);
+        const wrap = field.closest('.form__field');
+        if (wrap && wrap.classList.contains('has-error')) validateField(field);
       });
     });
 
@@ -372,21 +382,19 @@ const UI = (() => {
       e.preventDefault();
       const fields = qsa('[required]', form);
       const valid  = fields.map(validateField).every(Boolean);
-
       if (!valid) {
         const firstErr = qs('.form__field.has-error input, .form__field.has-error textarea', form);
-        firstErr?.focus();
+        if (firstErr) firstErr.focus();
         return;
       }
-
       const btn = qs('[type="submit"]', form);
       if (btn) {
         const original = btn.textContent;
-        btn.textContent = 'Sending…';
+        btn.textContent = 'Sending...';
         btn.disabled = true;
         setTimeout(() => {
-          btn.textContent = '✓ Message Sent';
-          btn.style.background = 'var(--color-success, #10B981)';
+          btn.textContent = 'Message Sent!';
+          btn.style.background = '#10B981';
           setTimeout(() => {
             btn.textContent = original;
             btn.disabled = false;
@@ -407,60 +415,33 @@ const UI = (() => {
     bar.id = 'scroll-progress';
 
     const style = document.createElement('style');
-    style.textContent = `
-      #scroll-progress {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 3px;
-        width: 0%;
-        background: var(--gradient-accent, linear-gradient(90deg, #0EA5E9, #38BDF8));
-        z-index: calc(var(--z-sticky, 200) + 1);
-        transition: width 0.1s linear;
-        pointer-events: none;
-      }
-    `;
+    style.textContent = [
+      '#scroll-progress {',
+      '  position: fixed;',
+      '  top: 0;',
+      '  left: 0;',
+      '  height: 3px;',
+      '  width: 0%;',
+      '  background: linear-gradient(90deg, #0EA5E9, #38BDF8);',
+      '  z-index: 201;',
+      '  transition: width 0.1s linear;',
+      '  pointer-events: none;',
+      '}'
+    ].join('\n');
+
     document.head.appendChild(style);
     document.body.prepend(bar);
 
     on(window, 'scroll', throttle(() => {
-      const pct = Aura.getScrollPct() * 100;
-      bar.style.width = `${pct}%`;
+      const doc = document.documentElement;
+      const scrollable = doc.scrollHeight - doc.clientHeight;
+      const pct = scrollable > 0 ? (getScrollY() / scrollable) * 100 : 0;
+      bar.style.width = pct + '%';
     }, 60), { passive: true });
   };
 
   /* ----------------------------------------------------------
-     9. FOCUS TRAP UTILITY (for modals / drawers)
-  ---------------------------------------------------------- */
-
-  const FOCUSABLE = [
-    'a[href]', 'button:not([disabled])', 'input:not([disabled])',
-    'select:not([disabled])', 'textarea:not([disabled])',
-    '[tabindex]:not([tabindex="-1"])',
-  ].join(', ');
-
-  const trapFocus = (container) => {
-    const focusable = qsa(FOCUSABLE, container);
-    if (!focusable.length) return () => {};
-
-    const first = focusable[0];
-    const last  = focusable[focusable.length - 1];
-
-    const handler = (e) => {
-      if (e.key !== 'Tab') return;
-      if (e.shiftKey) {
-        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
-      } else {
-        if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
-      }
-    };
-
-    on(container, 'keydown', handler);
-    return () => container.removeEventListener('keydown', handler);
-  };
-
-  /* ----------------------------------------------------------
-     INIT — called after engine renders the page
+     INIT
   ---------------------------------------------------------- */
 
   const init = () => {
@@ -479,19 +460,18 @@ const UI = (() => {
   ---------------------------------------------------------- */
 
   return {
-    init,
-    initMobileNav,
-    initStickyNav,
-    initActiveNavLinks,
-    initScrollToTop,
-    initGallery,
-    initButtonEffects,
-    initContactForm,
-    initScrollProgress,
-    trapFocus,
+    init: init,
+    initMobileNav: initMobileNav,
+    initStickyNav: initStickyNav,
+    initActiveNavLinks: initActiveNavLinks,
+    initScrollToTop: initScrollToTop,
+    initGallery: initGallery,
+    initButtonEffects: initButtonEffects,
+    initContactForm: initContactForm,
+    initScrollProgress: initScrollProgress
   };
 
 })();
 
 window.UI = UI;
-      
+                        
