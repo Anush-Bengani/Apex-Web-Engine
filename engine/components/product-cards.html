@@ -1,156 +1,217 @@
-<!-- ============================================================
-     FILE: components/product-cards.html
-     Aura Design System — Product Cards Component
-     Suitable for: ecommerce, menus, packages, room types
-     ============================================================ -->
-
-<section class="products section" aria-labelledby="products-heading">
+<section class="product-cards section" aria-labelledby="products-heading">
   <div class="container">
 
 ```
-<div class="section-header reveal">
-  <p class="t-overline">Our collection</p>
-  <h2 class="t-h2" id="products-heading">Carefully curated for you</h2>
-</div>
+<header class="section-header">
+  <span class="section-label" data-content="products.label"></span>
+  <h2 id="products-heading" data-content="products.title"></h2>
+  <p class="lead" data-content="products.subtitle"></p>
+</header>
 
-<!-- Filter bar (optional) -->
-<div class="products__filters reveal" role="group" aria-label="Product filters">
-  <button class="filter-btn is-active" data-filter="all">All</button>
-  <button class="filter-btn" data-filter="new">New</button>
-  <button class="filter-btn" data-filter="popular">Popular</button>
-  <button class="filter-btn" data-filter="sale">On Sale</button>
-</div>
+<ul class="grid grid--4" role="list" aria-label="Product catalogue" data-component="product-cards-list">
 
-<ul class="products__grid grid list-none" role="list">
-
-  <li class="col-3">
-    <article class="product-card card reveal stagger-1" data-category="new">
-      <div class="product-card__media img-zoom">
-        <img src="[PRODUCT_IMAGE_1]" alt="[PRODUCT_NAME_1]" class="card__image card__image--square" loading="lazy" width="300" height="300">
-        <span class="product-card__badge">New</span>
+  <li class="product-card animate-fade-up delay-1">
+    <span class="product-card__badge" data-content="products.card1.badge"></span>
+    <div class="product-card__image-wrap">
+      <img
+        class="product-card__image"
+        data-content-attr="src"
+        data-content="products.card1.imageUrl"
+        data-content-attr-alt="products.card1.imageAlt"
+        src=""
+        alt=""
+        width="400"
+        height="300"
+        loading="lazy"
+      />
+      <button
+        class="product-card__wishlist"
+        type="button"
+        aria-label=""
+        data-content-attr-aria-label="products.card1.wishlistAriaLabel"
+        data-action="toggle-wishlist"
+        data-product-id=""
+        data-content-attr-data-product-id="products.card1.id"
+      >
+        <span aria-hidden="true">♡</span>
+      </button>
+    </div>
+    <div class="product-card__body">
+      <span class="product-card__category" data-content="products.card1.category"></span>
+      <h3 class="product-card__title" data-content="products.card1.title"></h3>
+      <div class="product-card__rating" aria-label="" data-content-attr-aria-label="products.card1.ratingAriaLabel">
+        <span class="product-card__stars" aria-hidden="true" data-content="products.card1.stars"></span>
+        <span data-content="products.card1.reviewCount"></span>
       </div>
-      <div class="card__body card__body--sm">
-        <p class="t-label product-card__category">[CATEGORY]</p>
-        <h3 class="t-h3 product-card__title">[Product Name One]</h3>
-        <p class="t-body-sm product-card__desc">Brief description of the product with key selling point.</p>
-        <div class="product-card__footer">
-          <div class="product-card__pricing">
-            <span class="product-card__price">₹2,499</span>
-            <span class="product-card__price-original">₹3,200</span>
-          </div>
-          <button class="btn btn--accent btn--sm product-card__add" aria-label="Add [Product Name One] to cart">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            Add
-          </button>
+      <div class="product-card__footer">
+        <div>
+          <span class="product-card__price" data-content="products.card1.price"></span>
+          <span class="product-card__price-original" data-content="products.card1.originalPrice"></span>
         </div>
+        <a
+          class="btn btn--primary btn--sm"
+          data-content="products.card1.ctaLabel"
+          data-content-attr-href="products.card1.ctaUrl"
+          href="#"
+          aria-label=""
+          data-content-attr-aria-label="products.card1.ctaAriaLabel"
+        ></a>
       </div>
-    </article>
+    </div>
   </li>
 
-  <li class="col-3">
-    <article class="product-card card reveal stagger-2" data-category="popular">
-      <div class="product-card__media img-zoom">
-        <img src="[PRODUCT_IMAGE_2]" alt="[PRODUCT_NAME_2]" class="card__image card__image--square" loading="lazy" width="300" height="300">
-        <span class="product-card__badge product-card__badge--popular">Popular</span>
+  <li class="product-card animate-fade-up delay-2">
+    <span class="product-card__badge" data-content="products.card2.badge"></span>
+    <div class="product-card__image-wrap">
+      <img
+        class="product-card__image"
+        data-content-attr="src"
+        data-content="products.card2.imageUrl"
+        data-content-attr-alt="products.card2.imageAlt"
+        src=""
+        alt=""
+        width="400"
+        height="300"
+        loading="lazy"
+      />
+      <button
+        class="product-card__wishlist"
+        type="button"
+        aria-label=""
+        data-content-attr-aria-label="products.card2.wishlistAriaLabel"
+        data-action="toggle-wishlist"
+        data-product-id=""
+        data-content-attr-data-product-id="products.card2.id"
+      >
+        <span aria-hidden="true">♡</span>
+      </button>
+    </div>
+    <div class="product-card__body">
+      <span class="product-card__category" data-content="products.card2.category"></span>
+      <h3 class="product-card__title" data-content="products.card2.title"></h3>
+      <div class="product-card__rating" aria-label="" data-content-attr-aria-label="products.card2.ratingAriaLabel">
+        <span class="product-card__stars" aria-hidden="true" data-content="products.card2.stars"></span>
+        <span data-content="products.card2.reviewCount"></span>
       </div>
-      <div class="card__body card__body--sm">
-        <p class="t-label product-card__category">[CATEGORY]</p>
-        <h3 class="t-h3 product-card__title">[Product Name Two]</h3>
-        <p class="t-body-sm product-card__desc">Brief description of the product with key selling point.</p>
-        <div class="product-card__footer">
-          <div class="product-card__pricing">
-            <span class="product-card__price">₹1,899</span>
-          </div>
-          <button class="btn btn--accent btn--sm product-card__add" aria-label="Add [Product Name Two] to cart">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            Add
-          </button>
+      <div class="product-card__footer">
+        <div>
+          <span class="product-card__price" data-content="products.card2.price"></span>
+          <span class="product-card__price-original" data-content="products.card2.originalPrice"></span>
         </div>
+        <a
+          class="btn btn--primary btn--sm"
+          data-content="products.card2.ctaLabel"
+          data-content-attr-href="products.card2.ctaUrl"
+          href="#"
+          aria-label=""
+          data-content-attr-aria-label="products.card2.ctaAriaLabel"
+        ></a>
       </div>
-    </article>
+    </div>
   </li>
 
-  <li class="col-3">
-    <article class="product-card card reveal stagger-3" data-category="sale">
-      <div class="product-card__media img-zoom">
-        <img src="[PRODUCT_IMAGE_3]" alt="[PRODUCT_NAME_3]" class="card__image card__image--square" loading="lazy" width="300" height="300">
-        <span class="product-card__badge product-card__badge--sale">Sale</span>
+  <li class="product-card animate-fade-up delay-3">
+    <span class="product-card__badge" data-content="products.card3.badge"></span>
+    <div class="product-card__image-wrap">
+      <img
+        class="product-card__image"
+        data-content-attr="src"
+        data-content="products.card3.imageUrl"
+        data-content-attr-alt="products.card3.imageAlt"
+        src=""
+        alt=""
+        width="400"
+        height="300"
+        loading="lazy"
+      />
+      <button
+        class="product-card__wishlist"
+        type="button"
+        aria-label=""
+        data-content-attr-aria-label="products.card3.wishlistAriaLabel"
+        data-action="toggle-wishlist"
+        data-product-id=""
+        data-content-attr-data-product-id="products.card3.id"
+      >
+        <span aria-hidden="true">♡</span>
+      </button>
+    </div>
+    <div class="product-card__body">
+      <span class="product-card__category" data-content="products.card3.category"></span>
+      <h3 class="product-card__title" data-content="products.card3.title"></h3>
+      <div class="product-card__rating" aria-label="" data-content-attr-aria-label="products.card3.ratingAriaLabel">
+        <span class="product-card__stars" aria-hidden="true" data-content="products.card3.stars"></span>
+        <span data-content="products.card3.reviewCount"></span>
       </div>
-      <div class="card__body card__body--sm">
-        <p class="t-label product-card__category">[CATEGORY]</p>
-        <h3 class="t-h3 product-card__title">[Product Name Three]</h3>
-        <p class="t-body-sm product-card__desc">Brief description of the product with key selling point.</p>
-        <div class="product-card__footer">
-          <div class="product-card__pricing">
-            <span class="product-card__price">₹999</span>
-            <span class="product-card__price-original">₹1,499</span>
-          </div>
-          <button class="btn btn--accent btn--sm product-card__add" aria-label="Add [Product Name Three] to cart">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            Add
-          </button>
+      <div class="product-card__footer">
+        <div>
+          <span class="product-card__price" data-content="products.card3.price"></span>
+          <span class="product-card__price-original" data-content="products.card3.originalPrice"></span>
         </div>
+        <a
+          class="btn btn--primary btn--sm"
+          data-content="products.card3.ctaLabel"
+          data-content-attr-href="products.card3.ctaUrl"
+          href="#"
+          aria-label=""
+          data-content-attr-aria-label="products.card3.ctaAriaLabel"
+        ></a>
       </div>
-    </article>
+    </div>
   </li>
 
-  <li class="col-3">
-    <article class="product-card card reveal stagger-4" data-category="new">
-      <div class="product-card__media img-zoom">
-        <img src="[PRODUCT_IMAGE_4]" alt="[PRODUCT_NAME_4]" class="card__image card__image--square" loading="lazy" width="300" height="300">
+  <li class="product-card animate-fade-up delay-4">
+    <span class="product-card__badge" data-content="products.card4.badge"></span>
+    <div class="product-card__image-wrap">
+      <img
+        class="product-card__image"
+        data-content-attr="src"
+        data-content="products.card4.imageUrl"
+        data-content-attr-alt="products.card4.imageAlt"
+        src=""
+        alt=""
+        width="400"
+        height="300"
+        loading="lazy"
+      />
+      <button
+        class="product-card__wishlist"
+        type="button"
+        aria-label=""
+        data-content-attr-aria-label="products.card4.wishlistAriaLabel"
+        data-action="toggle-wishlist"
+        data-product-id=""
+        data-content-attr-data-product-id="products.card4.id"
+      >
+        <span aria-hidden="true">♡</span>
+      </button>
+    </div>
+    <div class="product-card__body">
+      <span class="product-card__category" data-content="products.card4.category"></span>
+      <h3 class="product-card__title" data-content="products.card4.title"></h3>
+      <div class="product-card__rating" aria-label="" data-content-attr-aria-label="products.card4.ratingAriaLabel">
+        <span class="product-card__stars" aria-hidden="true" data-content="products.card4.stars"></span>
+        <span data-content="products.card4.reviewCount"></span>
       </div>
-      <div class="card__body card__body--sm">
-        <p class="t-label product-card__category">[CATEGORY]</p>
-        <h3 class="t-h3 product-card__title">[Product Name Four]</h3>
-        <p class="t-body-sm product-card__desc">Brief description of the product with key selling point.</p>
-        <div class="product-card__footer">
-          <div class="product-card__pricing">
-            <span class="product-card__price">₹3,299</span>
-          </div>
-          <button class="btn btn--accent btn--sm product-card__add" aria-label="Add [Product Name Four] to cart">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            Add
-          </button>
+      <div class="product-card__footer">
+        <div>
+          <span class="product-card__price" data-content="products.card4.price"></span>
+          <span class="product-card__price-original" data-content="products.card4.originalPrice"></span>
         </div>
+        <a
+          class="btn btn--primary btn--sm"
+          data-content="products.card4.ctaLabel"
+          data-content-attr-href="products.card4.ctaUrl"
+          href="#"
+          aria-label=""
+          data-content-attr-aria-label="products.card4.ctaAriaLabel"
+        ></a>
       </div>
-    </article>
+    </div>
   </li>
 
 </ul>
-
-<div class="products__footer reveal">
-  <a href="#" class="btn btn--outline">View all products</a>
-</div>
 ```
 
   </div>
 </section>
-
-<script>
-(function() {
-  const filters = document.querySelectorAll('.filter-btn');
-  const products = document.querySelectorAll('.product-card');
-
-  filters.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter;
-      filters.forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-
-      products.forEach(card => {
-        const cat = card.closest('li').dataset.category || 'all';
-        const show = filter === 'all' || cat === filter;
-        card.closest('li').style.display = show ? '' : 'none';
-      });
-    });
-  });
-})();
-</script>
