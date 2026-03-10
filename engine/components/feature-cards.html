@@ -1,156 +1,115 @@
-<!-- ============================================================
-     FILE: components/feature-cards.html
-     Aura Design System — Feature Cards Component
-     Variants: 3-col grid | 2-col grid | horizontal list
-     ============================================================ -->
-
-<section class="features section" aria-labelledby="features-heading">
+<section class="feature-cards section" aria-labelledby="features-heading">
   <div class="container">
 
 ```
-<!-- Section Header -->
-<div class="section-header reveal">
-  <p class="t-overline">Why choose us</p>
-  <h2 class="t-h2" id="features-heading">Everything you need to succeed</h2>
-  <p class="t-body-lg section-header__sub">
-    A complete toolkit — from design tokens to live deployment — built for speed and consistency.
-  </p>
-</div>
+<header class="section-header">
+  <span class="section-label" data-content="features.label"></span>
+  <h2 id="features-heading" data-content="features.title"></h2>
+  <p class="lead" data-content="features.subtitle"></p>
+</header>
 
-<!-- Feature Grid: 3 columns -->
-<ul class="features__grid grid list-none" role="list">
+<ul class="grid grid--3" role="list" aria-label="Feature list" data-component="feature-cards-list">
 
-  <li class="col-4">
-    <div class="feature-card card reveal stagger-1">
-      <div class="feature-card__icon-wrap" aria-hidden="true">
-        <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-        </svg>
-      </div>
-      <div class="card__body">
-        <h3 class="t-h3 feature-card__title">Modular Architecture</h3>
-        <p class="t-body feature-card__text">
-          Every component is an independent module. Mix, match, and configure without touching core layout logic.
-        </p>
-        <a href="#" class="feature-card__link t-label">
-          Learn more
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </div>
+  <li class="feature-card animate-fade-up delay-1">
+    <div class="feature-card__icon" aria-hidden="true" data-content="features.card1.icon"></div>
+    <h3 class="feature-card__title" data-content="features.card1.title"></h3>
+    <p class="feature-card__desc" data-content="features.card1.description"></p>
+    <a
+      class="feature-card__link"
+      data-content="features.card1.linkLabel"
+      data-content-attr-href="features.card1.linkUrl"
+      href="#"
+      aria-label=""
+      data-content-attr-aria-label="features.card1.linkAriaLabel"
+    >
+      <span data-content="features.card1.linkLabel"></span>
+      <span aria-hidden="true">→</span>
+    </a>
   </li>
 
-  <li class="col-4">
-    <div class="feature-card card card--glow reveal stagger-2">
-      <div class="feature-card__icon-wrap feature-card__icon-wrap--accent" aria-hidden="true">
-        <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-        </svg>
-      </div>
-      <div class="card__body">
-        <p class="t-overline feature-card__badge">Most popular</p>
-        <h3 class="t-h3 feature-card__title">Dynamic Theming</h3>
-        <p class="t-body feature-card__text">
-          One codebase, infinite themes. Switch industry, color, and tone with three CSS variable overrides.
-        </p>
-        <a href="#" class="feature-card__link t-label">
-          Learn more
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </div>
+  <li class="feature-card animate-fade-up delay-2">
+    <div class="feature-card__icon" aria-hidden="true" data-content="features.card2.icon"></div>
+    <h3 class="feature-card__title" data-content="features.card2.title"></h3>
+    <p class="feature-card__desc" data-content="features.card2.description"></p>
+    <a
+      class="feature-card__link"
+      data-content="features.card2.linkLabel"
+      data-content-attr-href="features.card2.linkUrl"
+      href="#"
+      aria-label=""
+      data-content-attr-aria-label="features.card2.linkAriaLabel"
+    >
+      <span data-content="features.card2.linkLabel"></span>
+      <span aria-hidden="true">→</span>
+    </a>
   </li>
 
-  <li class="col-4">
-    <div class="feature-card card reveal stagger-3">
-      <div class="feature-card__icon-wrap" aria-hidden="true">
-        <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
-        </svg>
-      </div>
-      <div class="card__body">
-        <h3 class="t-h3 feature-card__title">Fully Responsive</h3>
-        <p class="t-body feature-card__text">
-          Fluid layouts adapt from 320px to 2560px. No pixel-perfect breakpoint hacks — just clean proportions.
-        </p>
-        <a href="#" class="feature-card__link t-label">
-          Learn more
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </div>
+  <li class="feature-card animate-fade-up delay-3">
+    <div class="feature-card__icon" aria-hidden="true" data-content="features.card3.icon"></div>
+    <h3 class="feature-card__title" data-content="features.card3.title"></h3>
+    <p class="feature-card__desc" data-content="features.card3.description"></p>
+    <a
+      class="feature-card__link"
+      data-content="features.card3.linkLabel"
+      data-content-attr-href="features.card3.linkUrl"
+      href="#"
+      aria-label=""
+      data-content-attr-aria-label="features.card3.linkAriaLabel"
+    >
+      <span data-content="features.card3.linkLabel"></span>
+      <span aria-hidden="true">→</span>
+    </a>
   </li>
 
-  <li class="col-4">
-    <div class="feature-card card reveal stagger-1">
-      <div class="feature-card__icon-wrap" aria-hidden="true">
-        <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-        </svg>
-      </div>
-      <div class="card__body">
-        <h3 class="t-h3 feature-card__title">Performance First</h3>
-        <p class="t-body feature-card__text">
-          GPU-composited animations, font-display:swap, and lazy loading baked in. Core Web Vitals by default.
-        </p>
-        <a href="#" class="feature-card__link t-label">
-          Learn more
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </div>
+  <li class="feature-card animate-fade-up delay-4">
+    <div class="feature-card__icon" aria-hidden="true" data-content="features.card4.icon"></div>
+    <h3 class="feature-card__title" data-content="features.card4.title"></h3>
+    <p class="feature-card__desc" data-content="features.card4.description"></p>
+    <a
+      class="feature-card__link"
+      data-content="features.card4.linkLabel"
+      data-content-attr-href="features.card4.linkUrl"
+      href="#"
+      aria-label=""
+      data-content-attr-aria-label="features.card4.linkAriaLabel"
+    >
+      <span data-content="features.card4.linkLabel"></span>
+      <span aria-hidden="true">→</span>
+    </a>
   </li>
 
-  <li class="col-4">
-    <div class="feature-card card reveal stagger-2">
-      <div class="feature-card__icon-wrap" aria-hidden="true">
-        <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        </svg>
-      </div>
-      <div class="card__body">
-        <h3 class="t-h3 feature-card__title">Accessibility Built In</h3>
-        <p class="t-body feature-card__text">
-          Semantic HTML, ARIA attributes, focus management, and contrast ratios — WCAG AA compliant out of the box.
-        </p>
-        <a href="#" class="feature-card__link t-label">
-          Learn more
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </div>
+  <li class="feature-card animate-fade-up delay-5">
+    <div class="feature-card__icon" aria-hidden="true" data-content="features.card5.icon"></div>
+    <h3 class="feature-card__title" data-content="features.card5.title"></h3>
+    <p class="feature-card__desc" data-content="features.card5.description"></p>
+    <a
+      class="feature-card__link"
+      data-content="features.card5.linkLabel"
+      data-content-attr-href="features.card5.linkUrl"
+      href="#"
+      aria-label=""
+      data-content-attr-aria-label="features.card5.linkAriaLabel"
+    >
+      <span data-content="features.card5.linkLabel"></span>
+      <span aria-hidden="true">→</span>
+    </a>
   </li>
 
-  <li class="col-4">
-    <div class="feature-card card reveal stagger-3">
-      <div class="feature-card__icon-wrap" aria-hidden="true">
-        <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-        </svg>
-      </div>
-      <div class="card__body">
-        <h3 class="t-h3 feature-card__title">Multi-Industry Ready</h3>
-        <p class="t-body feature-card__text">
-          Tokens and content slots designed for restaurants, hotels, gyms, ecommerce, and corporate clients.
-        </p>
-        <a href="#" class="feature-card__link t-label">
-          Learn more
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </div>
+  <li class="feature-card animate-fade-up delay-5">
+    <div class="feature-card__icon" aria-hidden="true" data-content="features.card6.icon"></div>
+    <h3 class="feature-card__title" data-content="features.card6.title"></h3>
+    <p class="feature-card__desc" data-content="features.card6.description"></p>
+    <a
+      class="feature-card__link"
+      data-content="features.card6.linkLabel"
+      data-content-attr-href="features.card6.linkUrl"
+      href="#"
+      aria-label=""
+      data-content-attr-aria-label="features.card6.linkAriaLabel"
+    >
+      <span data-content="features.card6.linkLabel"></span>
+      <span aria-hidden="true">→</span>
+    </a>
   </li>
 
 </ul>
