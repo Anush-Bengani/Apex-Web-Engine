@@ -1,0 +1,96 @@
+<!-- ============================================================
+     FILE: components/hero.html
+     Aura Design System — Hero Section Component
+     Variants: hero--centered | hero--split | hero--fullscreen
+     ============================================================ -->
+
+<!-- VARIANT A: Split Layout (default) -->
+
+<section class="hero hero--split section--lg" aria-label="Hero">
+  <div class="container">
+    <div class="hero__grid grid">
+
+```
+  <!-- Content -->
+  <div class="hero__content col-6 reveal reveal--left">
+    <p class="t-overline reveal stagger-1">Trusted by 500+ businesses</p>
+    <h1 class="t-hero hero__heading reveal stagger-2">
+      Crafted for<br>
+      <em class="t-italic">Excellence.</em>
+    </h1>
+    <p class="t-body-lg hero__subtext reveal stagger-3">
+      A modular web platform built for premium brands — responsive, fast, and ready to launch in days, not months.
+    </p>
+    <div class="hero__actions reveal stagger-4">
+      <a href="#contact" class="btn btn--primary btn--lg">Get Started</a>
+      <a href="#features" class="btn btn--outline btn--lg">See How It Works</a>
+    </div>
+    <div class="hero__proof reveal stagger-5">
+      <div class="hero__proof-avatars" aria-hidden="true">
+        <span class="hero__avatar">A</span>
+        <span class="hero__avatar">B</span>
+        <span class="hero__avatar">C</span>
+        <span class="hero__avatar">+</span>
+      </div>
+      <p class="t-caption">Loved by <strong>2,400+</strong> clients worldwide</p>
+    </div>
+  </div>
+
+  <!-- Visual -->
+  <div class="hero__visual col-6 reveal reveal--right">
+    <div class="hero__image-wrap img-zoom">
+      <img
+        src="[HERO_IMAGE_URL]"
+        alt="[HERO_IMAGE_ALT]"
+        class="hero__image"
+        loading="eager"
+        fetchpriority="high"
+        width="640"
+        height="720"
+      >
+      <!-- Floating stat card -->
+      <div class="hero__float-card reveal stagger-3" aria-hidden="true">
+        <p class="t-label">This month</p>
+        <p class="hero__float-number">+124%</p>
+        <p class="t-caption">Conversion rate</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <!-- Background decoration -->
+
+  <div class="hero__bg-shape" aria-hidden="true"></div>
+</section>
+
+<!-- VARIANT B: Centered Layout -->
+
+<section class="hero hero--centered section--lg" aria-label="Hero" style="display:none;">
+  <div class="container">
+    <div class="hero__centered-content">
+      <p class="t-overline reveal">Premium Web Solutions</p>
+      <h1 class="t-hero hero__heading reveal stagger-1">
+        Built to Impress.<br>
+        <em class="t-italic">Designed to Convert.</em>
+      </h1>
+      <p class="t-body-lg hero__subtext hero__subtext--centered reveal stagger-2">
+        Enterprise-grade design system for restaurants, hotels, gyms, and corporate brands.
+      </p>
+      <div class="hero__actions hero__actions--centered reveal stagger-3">
+        <a href="#contact" class="btn btn--primary btn--lg">Start Your Project</a>
+        <a href="#work" class="btn btn--ghost btn--lg">View Our Work</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full-bleed background image option -->
+
+  <div class="hero__bg-media" aria-hidden="true">
+    <img src="[HERO_BG_URL]" alt="" role="presentation" loading="eager">
+    <div class="hero__bg-overlay"></div>
+  </div>
+</section>
