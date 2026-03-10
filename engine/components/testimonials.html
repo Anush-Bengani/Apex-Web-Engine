@@ -1,0 +1,140 @@
+<!-- ============================================================
+     FILE: components/testimonials.html
+     Aura Design System — Testimonial Section Component
+     Variants: grid | carousel
+     ============================================================ -->
+
+<section class="testimonials section bg-raised" aria-labelledby="testimonials-heading">
+  <div class="container">
+
+```
+<div class="section-header reveal">
+  <p class="t-overline">Client voices</p>
+  <h2 class="t-h2" id="testimonials-heading">Trusted by people who demand excellence</h2>
+</div>
+
+<!-- Stats bar -->
+<div class="testimonials__stats grid reveal">
+  <div class="col-3 testimonials__stat">
+    <p class="testimonials__stat-number">2,400+</p>
+    <p class="t-label">Happy clients</p>
+  </div>
+  <div class="col-3 testimonials__stat">
+    <p class="testimonials__stat-number">98%</p>
+    <p class="t-label">Satisfaction rate</p>
+  </div>
+  <div class="col-3 testimonials__stat">
+    <p class="testimonials__stat-number">4.9</p>
+    <p class="t-label">Average rating</p>
+  </div>
+  <div class="col-3 testimonials__stat">
+    <p class="testimonials__stat-number">6 yrs</p>
+    <p class="t-label">In business</p>
+  </div>
+</div>
+
+<!-- Testimonial Cards Grid -->
+<div class="testimonials__grid grid" role="list">
+
+  <article class="testimonial-card card col-4 reveal stagger-1" role="listitem">
+    <div class="testimonial-card__body card__body">
+      <div class="testimonial-card__stars" aria-label="5 out of 5 stars">
+        <span class="testimonial-card__star" aria-hidden="true">★</span>
+        <span class="testimonial-card__star" aria-hidden="true">★</span>
+        <span class="testimonial-card__star" aria-hidden="true">★</span>
+        <span class="testimonial-card__star" aria-hidden="true">★</span>
+        <span class="testimonial-card__star" aria-hidden="true">★</span>
+      </div>
+      <blockquote class="testimonial-card__quote">
+        <p>
+          "The design system transformed our online presence completely. We saw a 40% increase in enquiries within the first month of launch."
+        </p>
+      </blockquote>
+      <footer class="testimonial-card__author">
+        <div class="testimonial-card__avatar" aria-hidden="true">
+          <img src="[AVATAR_1]" alt="" width="44" height="44" loading="lazy">
+        </div>
+        <div>
+          <cite class="testimonial-card__name t-body">Priya Mehta</cite>
+          <p class="t-caption">Owner, The Grand Spice</p>
+        </div>
+      </footer>
+    </div>
+  </article>
+
+  <article class="testimonial-card card testimonial-card--featured col-4 reveal stagger-2" role="listitem">
+    <div class="testimonial-card__body card__body">
+      <div class="testimonial-card__stars" aria-label="5 out of 5 stars">
+        <span class="testimonial-card__star" aria-hidden="true">★</span>
+        <span class="testimonial-card__star" aria-hidden="true">★</span>
+        <span class="testimonial-card__star" aria-hidden="true">★</span>
+        <span class="testimonial-card__star" aria-hidden="true">★</span>
+        <span class="testimonial-card__star" aria-hidden="true">★</span>
+      </div>
+      <blockquote class="testimonial-card__quote testimonial-card__quote--lg">
+        <p>
+          "Absolutely world-class work. The attention to detail, the responsiveness of the team, and the final output exceeded every expectation."
+        </p>
+      </blockquote>
+      <footer class="testimonial-card__author">
+        <div class="testimonial-card__avatar" aria-hidden="true">
+          <img src="[AVATAR_2]" alt="" width="44" height="44" loading="lazy">
+        </div>
+        <div>
+          <cite class="testimonial-card__name t-body">Arjun Kapoor</cite>
+          <p class="t-caption">CEO, Nexus Consulting</p>
+        </div>
+      </footer>
+    </div>
+  </article>
+
+  <article class="testimonial-card card col-4 reveal stagger-3" role="listitem">
+    <div class="testimonial-card__body card__body">
+      <div class="testimonial-card__stars" aria-label="5 out of 5 stars">
+        <span class="testimonial-card__star" aria-hidden="true">★</span>
+        <span class="testimonial-card__star" aria-hidden="true">★</span>
+        <span class="testimonial-card__star" aria-hidden="true">★</span>
+        <span class="testimonial-card__star" aria-hidden="true">★</span>
+        <span class="testimonial-card__star" aria-hidden="true">★</span>
+      </div>
+      <blockquote class="testimonial-card__quote">
+        <p>
+          "Our hotel bookings through the website doubled. The luxury feel of the design immediately communicates premium quality to visitors."
+        </p>
+      </blockquote>
+      <footer class="testimonial-card__author">
+        <div class="testimonial-card__avatar" aria-hidden="true">
+          <img src="[AVATAR_3]" alt="" width="44" height="44" loading="lazy">
+        </div>
+        <div>
+          <cite class="testimonial-card__name t-body">Sunita Rao</cite>
+          <p class="t-caption">Director, Marigold Retreat</p>
+        </div>
+      </footer>
+    </div>
+  </article>
+
+</div>
+
+<!-- Carousel controls (visible on mobile) -->
+<div class="testimonials__controls" aria-label="Testimonial navigation">
+  <button class="testimonials__prev btn btn--ghost" aria-label="Previous testimonial">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <div class="testimonials__dots" role="tablist" aria-label="Testimonial slides">
+    <button class="testimonials__dot is-active" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+    <button class="testimonials__dot" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+    <button class="testimonials__dot" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+  </div>
+  <button class="testimonials__next btn btn--ghost" aria-label="Next testimonial">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>
+```
+
+  </div>
+</section>
