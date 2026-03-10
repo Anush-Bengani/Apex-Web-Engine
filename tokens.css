@@ -1,0 +1,358 @@
+/* ==========================================================================
+   FILE: css/tokens.css
+   Aura Design System — Core Design Tokens
+   Version: 1.0.0
+   Usage: Import first, before all other stylesheets.
+          Theme overrides via [data-theme] and [data-industry] attributes on <html>.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. PRIMITIVE SCALE
+   Raw values — never reference these directly in components.
+   Components must always use semantic tokens defined in Section 2+.
+   -------------------------------------------------------------------------- */
+:root {
+
+  /* Neutral Primitive Scale */
+  --_clr-black:       #0A0A0B;
+  --_clr-neutral-950: #111113;
+  --_clr-neutral-900: #1C1C1F;
+  --_clr-neutral-800: #2A2A2E;
+  --_clr-neutral-700: #3D3D44;
+  --_clr-neutral-600: #6B6B77;
+  --_clr-neutral-500: #9B9BA8;
+  --_clr-neutral-400: #C4C4CE;
+  --_clr-neutral-300: #E2E2E8;
+  --_clr-neutral-200: #F2F2F6;
+  --_clr-neutral-100: #F8F8FB;
+  --_clr-white:       #FFFFFF;
+
+  /* Primitive Spacing Base */
+  --_space-unit: 0.25rem; /* 4px — 8pt grid base */
+}
+
+
+/* --------------------------------------------------------------------------
+   2. BRAND / ACCENT TOKENS
+   Three HSL channels are the only values that change per industry theme.
+   All accent-derived tokens below update automatically.
+   -------------------------------------------------------------------------- */
+:root {
+  --accent-h:         220;
+  --accent-s:         72%;
+  --accent-l:         52%;
+
+  /* Derived accent variants — do not override directly */
+  --color-accent:         hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+  --color-accent-hover:   hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 8%));
+  --color-accent-active:  hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 14%));
+  --color-accent-subtle:  hsl(var(--accent-h), calc(var(--accent-s) - 18%), calc(var(--accent-l) + 26%));
+  --color-accent-dim:     hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.12);
+  --color-accent-border:  hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.28);
+  --color-accent-glow:    hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.30);
+}
+
+
+/* --------------------------------------------------------------------------
+   3. SEMANTIC COLOR TOKENS — LIGHT MODE (default)
+   These are the tokens components must use.
+   -------------------------------------------------------------------------- */
+:root,
+[data-theme="light"] {
+
+  /* Primary colors */
+  --color-primary:          var(--_clr-neutral-950);
+  --color-primary-hover:    var(--_clr-neutral-900);
+  --color-primary-active:   var(--_clr-black);
+  --color-primary-inverse:  var(--_clr-white);
+
+  /* Secondary colors */
+  --color-secondary:        var(--_clr-neutral-600);
+  --color-secondary-hover:  var(--_clr-neutral-700);
+  --color-secondary-active: var(--_clr-neutral-800);
+  --color-secondary-subtle: var(--_clr-neutral-200);
+
+  /* Background colors */
+  --color-bg:               var(--_clr-white);
+  --color-bg-raised:        var(--_clr-neutral-100);
+  --color-bg-overlay:       var(--_clr-neutral-200);
+  --color-bg-sunken:        var(--_clr-neutral-200);
+  --color-bg-inverse:       var(--_clr-neutral-950);
+
+  /* Text colors */
+  --color-text:             var(--_clr-neutral-950);
+  --color-text-secondary:   var(--_clr-neutral-600);
+  --color-text-tertiary:    var(--_clr-neutral-500);
+  --color-text-disabled:    var(--_clr-neutral-400);
+  --color-text-inverse:     var(--_clr-white);
+  --color-text-on-accent:   var(--_clr-white);
+
+  /* Border colors */
+  --color-border:           var(--_clr-neutral-300);
+  --color-border-subtle:    var(--_clr-neutral-200);
+  --color-border-strong:    var(--_clr-neutral-400);
+  --color-border-focus:     var(--color-accent);
+
+  /* State colors */
+  --color-success:          hsl(152, 60%, 38%);
+  --color-success-subtle:   hsl(152, 60%, 95%);
+  --color-warning:          hsl(38, 92%, 48%);
+  --color-warning-subtle:   hsl(38, 92%, 95%);
+  --color-error:            hsl(4, 72%, 52%);
+  --color-error-subtle:     hsl(4, 72%, 96%);
+  --color-info:             hsl(210, 80%, 52%);
+  --color-info-subtle:      hsl(210, 80%, 95%);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. SEMANTIC COLOR TOKENS — DARK MODE
+   Only reassign tokens that differ from light. Accent derives automatically.
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] {
+
+  /* Background colors */
+  --color-bg:               var(--_clr-neutral-950);
+  --color-bg-raised:        var(--_clr-neutral-900);
+  --color-bg-overlay:       var(--_clr-neutral-800);
+  --color-bg-sunken:        var(--_clr-black);
+  --color-bg-inverse:       var(--_clr-white);
+
+  /* Text colors */
+  --color-text:             var(--_clr-neutral-100);
+  --color-text-secondary:   var(--_clr-neutral-500);
+  --color-text-tertiary:    var(--_clr-neutral-600);
+  --color-text-disabled:    var(--_clr-neutral-700);
+  --color-text-inverse:     var(--_clr-neutral-950);
+
+  /* Border colors */
+  --color-border:           var(--_clr-neutral-800);
+  --color-border-subtle:    var(--_clr-neutral-900);
+  --color-border-strong:    var(--_clr-neutral-700);
+
+  /* State colors adjusted for dark backgrounds */
+  --color-success-subtle:   hsl(152, 40%, 14%);
+  --color-warning-subtle:   hsl(38, 60%, 14%);
+  --color-error-subtle:     hsl(4, 50%, 14%);
+  --color-info-subtle:      hsl(210, 50%, 14%);
+}
+
+
+/* --------------------------------------------------------------------------
+   5. INDUSTRY THEME TOKENS
+   Override only the three HSL accent channels.
+   All --color-accent-* variants derive automatically.
+   Usage: <html data-industry="hotel">
+   -------------------------------------------------------------------------- */
+
+/* Restaurant: terracotta-copper — warmth, appetite */
+[data-industry="restaurant"] {
+  --accent-h: 24;
+  --accent-s: 72%;
+  --accent-l: 52%;
+}
+
+/* Hotel: champagne gold — luxury, prestige */
+[data-industry="hotel"] {
+  --accent-h: 43;
+  --accent-s: 68%;
+  --accent-l: 48%;
+}
+
+/* Ecommerce: vivid indigo — conversion, trust */
+[data-industry="ecommerce"] {
+  --accent-h: 252;
+  --accent-s: 82%;
+  --accent-l: 60%;
+}
+
+/* Gym: electric jade — energy, vitality */
+[data-industry="gym"] {
+  --accent-h: 162;
+  --accent-s: 78%;
+  --accent-l: 40%;
+}
+
+/* Corporate: slate blue — authority, reliability */
+[data-industry="corporate"] {
+  --accent-h: 220;
+  --accent-s: 72%;
+  --accent-l: 52%;
+}
+
+/* Consulting: deep cobalt — intellect, precision */
+[data-industry="consulting"] {
+  --accent-h: 235;
+  --accent-s: 85%;
+  --accent-l: 58%;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. SPACING TOKENS
+   8pt base grid. All values are multiples of 4px.
+   Never hardcode spacing values in components — always use these tokens.
+   -------------------------------------------------------------------------- */
+:root {
+
+  /* Named scale — use these in components */
+  --space-xs:   0.25rem;   /*  4px — icon gaps, tight inline spacing */
+  --space-sm:   0.5rem;    /*  8px — input padding, compact list gaps */
+  --space-md:   1rem;      /* 16px — default component padding */
+  --space-lg:   1.5rem;    /* 24px — card internal padding, form rows */
+  --space-xl:   2rem;      /* 32px — section internal gaps */
+  --space-2xl:  3rem;      /* 48px — large component separation */
+  --space-3xl:  4rem;      /* 64px — between major layout blocks */
+  --space-4xl:  6rem;      /* 96px — section vertical padding */
+
+  /* Fluid section rhythm — responsive via clamp() */
+  --section-space-sm:  clamp(3rem, 6vw, 5rem);    /* 48–80px  */
+  --section-space-md:  clamp(5rem, 10vw, 8rem);   /* 80–128px */
+  --section-space-lg:  clamp(7rem, 14vw, 12rem);  /* 112–192px */
+
+  /* Layout / structural spacing */
+  --grid-gap:          clamp(1rem, 2vw, 1.5rem);
+  --grid-outer:        clamp(1rem, 4vw, 4rem);
+  --card-padding-sm:   var(--space-lg);            /* 24px */
+  --card-padding-md:   var(--space-xl);            /* 32px */
+  --card-padding-lg:   clamp(2rem, 3vw, 3rem);     /* 32–48px */
+}
+
+
+/* --------------------------------------------------------------------------
+   7. BORDER TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+
+  /* Border radius */
+  --radius-xs:   0.25rem;   /*  4px — badges, tags, code blocks */
+  --radius-sm:   0.5rem;    /*  8px — inputs, small buttons */
+  --radius-md:   0.875rem;  /* 14px — buttons, chips, dropdowns */
+  --radius-lg:   1.25rem;   /* 20px — cards, panels, modals */
+  --radius-xl:   2rem;      /* 32px — large featured cards */
+  --radius-pill: 9999px;    /* ∞   — pills, tags, icon buttons */
+
+  /* Border width */
+  --border-width:        1px;
+  --border-width-md:     1.5px;
+  --border-width-lg:     2px;
+
+  /* Border styles (composites — use in shorthand) */
+  --border-default:      var(--border-width) solid var(--color-border);
+  --border-subtle:       var(--border-width) solid var(--color-border-subtle);
+  --border-strong:       var(--border-width) solid var(--color-border-strong);
+  --border-focus:        var(--border-width-lg) solid var(--color-border-focus);
+  --border-accent:       var(--border-width-md) solid var(--color-accent);
+}
+
+
+/* --------------------------------------------------------------------------
+   8. ELEVATION / SHADOW TOKENS
+   Always dual-layer: soft ambient + sharp direct.
+   -------------------------------------------------------------------------- */
+:root {
+
+  --shadow-xs:     0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm:     0 1px 3px rgba(0, 0, 0, 0.06),
+                   0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md:     0 4px 16px rgba(0, 0, 0, 0.07),
+                   0 1px 4px rgba(0, 0, 0, 0.05);
+  --shadow-lg:     0 8px 32px rgba(0, 0, 0, 0.09),
+                   0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-xl:     0 20px 60px rgba(0, 0, 0, 0.14),
+                   0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-glow:   0 0 0 1px var(--color-accent-border),
+                   0 8px 32px rgba(0, 0, 0, 0.09);
+  --shadow-focus:  0 0 0 3px var(--color-accent-dim);
+  --shadow-none:   none;
+}
+
+/* Dark mode shadow adjustments — increased opacity for visibility */
+[data-theme="dark"] {
+  --shadow-sm:   0 1px 3px rgba(0, 0, 0, 0.20), 0 1px 2px rgba(0, 0, 0, 0.16);
+  --shadow-md:   0 4px 16px rgba(0, 0, 0, 0.28), 0 1px 4px rgba(0, 0, 0, 0.20);
+  --shadow-lg:   0 8px 32px rgba(0, 0, 0, 0.36), 0 2px 8px rgba(0, 0, 0, 0.24);
+  --shadow-xl:   0 20px 60px rgba(0, 0, 0, 0.56), 0 4px 16px rgba(0, 0, 0, 0.36);
+}
+
+
+/* --------------------------------------------------------------------------
+   9. ANIMATION TOKENS
+   All transitions target GPU-composited properties only (transform, opacity).
+   Never animate: width, height, top, left, margin, padding.
+   -------------------------------------------------------------------------- */
+:root {
+
+  /* Easing curves */
+  --ease-linear:     linear;
+  --ease-in:         cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:        cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out:     cubic-bezier(0.4, 0, 0.2, 1);  /* --ease-smooth */
+  --ease-smooth:     cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-expo:   cubic-bezier(0.16, 1, 0.3, 1);  /* reveal animations */
+  --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1); /* micro-interactions */
+  --ease-bounce:     cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+  /* Duration scale */
+  --duration-instant: 80ms;   /* visual feedback only — icon swap, ripple */
+  --duration-fast:    150ms;  /* button press, toggle, checkbox */
+  --duration-normal:  240ms;  /* card hover, border-color, background */
+  --duration-slow:    400ms;  /* image zoom, panel expand, drawer */
+  --duration-reveal:  600ms;  /* scroll-triggered entrance animations */
+  --duration-page:    800ms;  /* page-level transitions */
+
+  /* Composite transition tokens — ready to use in transition property */
+  --transition-fast:   var(--duration-fast)   var(--ease-spring);
+  --transition-normal: var(--duration-normal) var(--ease-out-expo);
+  --transition-slow:   var(--duration-slow)   var(--ease-out-expo);
+
+  /* Pre-composed transitions for common properties */
+  --transition-color:     color     var(--duration-fast)   var(--ease-smooth),
+                          background var(--duration-fast)  var(--ease-smooth),
+                          border-color var(--duration-fast) var(--ease-smooth);
+  --transition-transform: transform  var(--duration-normal) var(--ease-out-expo);
+  --transition-opacity:   opacity    var(--duration-normal) var(--ease-smooth);
+  --transition-shadow:    box-shadow var(--duration-normal) var(--ease-smooth);
+  --transition-card:      transform  var(--duration-normal) var(--ease-out-expo),
+                          box-shadow var(--duration-normal) var(--ease-out-expo),
+                          border-color var(--duration-normal) var(--ease-smooth);
+  --transition-btn:       transform  var(--duration-fast)   var(--ease-spring),
+                          box-shadow var(--duration-normal) var(--ease-smooth),
+                          background var(--duration-fast)   var(--ease-smooth),
+                          color      var(--duration-fast)   var(--ease-smooth),
+                          border-color var(--duration-fast) var(--ease-smooth);
+}
+
+/* Respect user motion preferences — disable all transitions globally */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 0ms;
+    --duration-fast:    0ms;
+    --duration-normal:  0ms;
+    --duration-slow:    0ms;
+    --duration-reveal:  0ms;
+    --duration-page:    0ms;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   10. LAYOUT TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+
+  /* Content width constraints */
+  --width-prose:   65ch;      /* long-form text, blog, legal */
+  --width-content: 1120px;    /* default page content */
+  --width-wide:    1360px;    /* galleries, full-bleed sections */
+  --width-full:    100%;
+
+  /* Z-index stack — always use tokens, never magic numbers */
+  --z-below:    -1;
+  --z-base:      1;
+  --z-raised:   10;
+  --z-overlay: 100;
+  --z-modal:  1000;
+  --z-toast:  1100;
+  --z-top:    9999;
+}
