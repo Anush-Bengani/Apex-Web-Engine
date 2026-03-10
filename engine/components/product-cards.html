@@ -1,0 +1,156 @@
+<!-- ============================================================
+     FILE: components/product-cards.html
+     Aura Design System — Product Cards Component
+     Suitable for: ecommerce, menus, packages, room types
+     ============================================================ -->
+
+<section class="products section" aria-labelledby="products-heading">
+  <div class="container">
+
+```
+<div class="section-header reveal">
+  <p class="t-overline">Our collection</p>
+  <h2 class="t-h2" id="products-heading">Carefully curated for you</h2>
+</div>
+
+<!-- Filter bar (optional) -->
+<div class="products__filters reveal" role="group" aria-label="Product filters">
+  <button class="filter-btn is-active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="new">New</button>
+  <button class="filter-btn" data-filter="popular">Popular</button>
+  <button class="filter-btn" data-filter="sale">On Sale</button>
+</div>
+
+<ul class="products__grid grid list-none" role="list">
+
+  <li class="col-3">
+    <article class="product-card card reveal stagger-1" data-category="new">
+      <div class="product-card__media img-zoom">
+        <img src="[PRODUCT_IMAGE_1]" alt="[PRODUCT_NAME_1]" class="card__image card__image--square" loading="lazy" width="300" height="300">
+        <span class="product-card__badge">New</span>
+      </div>
+      <div class="card__body card__body--sm">
+        <p class="t-label product-card__category">[CATEGORY]</p>
+        <h3 class="t-h3 product-card__title">[Product Name One]</h3>
+        <p class="t-body-sm product-card__desc">Brief description of the product with key selling point.</p>
+        <div class="product-card__footer">
+          <div class="product-card__pricing">
+            <span class="product-card__price">₹2,499</span>
+            <span class="product-card__price-original">₹3,200</span>
+          </div>
+          <button class="btn btn--accent btn--sm product-card__add" aria-label="Add [Product Name One] to cart">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Add
+          </button>
+        </div>
+      </div>
+    </article>
+  </li>
+
+  <li class="col-3">
+    <article class="product-card card reveal stagger-2" data-category="popular">
+      <div class="product-card__media img-zoom">
+        <img src="[PRODUCT_IMAGE_2]" alt="[PRODUCT_NAME_2]" class="card__image card__image--square" loading="lazy" width="300" height="300">
+        <span class="product-card__badge product-card__badge--popular">Popular</span>
+      </div>
+      <div class="card__body card__body--sm">
+        <p class="t-label product-card__category">[CATEGORY]</p>
+        <h3 class="t-h3 product-card__title">[Product Name Two]</h3>
+        <p class="t-body-sm product-card__desc">Brief description of the product with key selling point.</p>
+        <div class="product-card__footer">
+          <div class="product-card__pricing">
+            <span class="product-card__price">₹1,899</span>
+          </div>
+          <button class="btn btn--accent btn--sm product-card__add" aria-label="Add [Product Name Two] to cart">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Add
+          </button>
+        </div>
+      </div>
+    </article>
+  </li>
+
+  <li class="col-3">
+    <article class="product-card card reveal stagger-3" data-category="sale">
+      <div class="product-card__media img-zoom">
+        <img src="[PRODUCT_IMAGE_3]" alt="[PRODUCT_NAME_3]" class="card__image card__image--square" loading="lazy" width="300" height="300">
+        <span class="product-card__badge product-card__badge--sale">Sale</span>
+      </div>
+      <div class="card__body card__body--sm">
+        <p class="t-label product-card__category">[CATEGORY]</p>
+        <h3 class="t-h3 product-card__title">[Product Name Three]</h3>
+        <p class="t-body-sm product-card__desc">Brief description of the product with key selling point.</p>
+        <div class="product-card__footer">
+          <div class="product-card__pricing">
+            <span class="product-card__price">₹999</span>
+            <span class="product-card__price-original">₹1,499</span>
+          </div>
+          <button class="btn btn--accent btn--sm product-card__add" aria-label="Add [Product Name Three] to cart">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Add
+          </button>
+        </div>
+      </div>
+    </article>
+  </li>
+
+  <li class="col-3">
+    <article class="product-card card reveal stagger-4" data-category="new">
+      <div class="product-card__media img-zoom">
+        <img src="[PRODUCT_IMAGE_4]" alt="[PRODUCT_NAME_4]" class="card__image card__image--square" loading="lazy" width="300" height="300">
+      </div>
+      <div class="card__body card__body--sm">
+        <p class="t-label product-card__category">[CATEGORY]</p>
+        <h3 class="t-h3 product-card__title">[Product Name Four]</h3>
+        <p class="t-body-sm product-card__desc">Brief description of the product with key selling point.</p>
+        <div class="product-card__footer">
+          <div class="product-card__pricing">
+            <span class="product-card__price">₹3,299</span>
+          </div>
+          <button class="btn btn--accent btn--sm product-card__add" aria-label="Add [Product Name Four] to cart">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Add
+          </button>
+        </div>
+      </div>
+    </article>
+  </li>
+
+</ul>
+
+<div class="products__footer reveal">
+  <a href="#" class="btn btn--outline">View all products</a>
+</div>
+```
+
+  </div>
+</section>
+
+<script>
+(function() {
+  const filters = document.querySelectorAll('.filter-btn');
+  const products = document.querySelectorAll('.product-card');
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      filters.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+
+      products.forEach(card => {
+        const cat = card.closest('li').dataset.category || 'all';
+        const show = filter === 'all' || cat === filter;
+        card.closest('li').style.display = show ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
