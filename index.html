@@ -1,77 +1,44 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0A0F1E" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A0F1E">
+
+  <!-- BASE TAG: forces all paths to resolve from repo root on GitHub Pages -->
+  <base href="/Apex-Web-Engine/">
 
   <title>Serenity Sands Resort</title>
-  <meta name="description" content="Experience comfort, nature, and luxury at Serenity Sands Resort — one of India's most relaxing coastal destinations in Goa." />
+  <meta name="description" content="Experience comfort, nature, and luxury at Serenity Sands Resort — one of India's most relaxing coastal destinations in Goa.">
 
-  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Serenity Sands Resort">
+  <meta property="og:description" content="Experience comfort, nature, and luxury at one of India's most relaxing coastal resort destinations.">
+  <meta property="og:url" content="https://anush-bengani.github.io/Apex-Web-Engine/">
 
-  <meta property="og:type"        content="website" />
-  <meta property="og:title"       content="Serenity Sands Resort" />
-  <meta property="og:description" content="Experience comfort, nature, and luxury at one of India's most relaxing coastal resort destinations." />
-  <meta property="og:image"       content="assets/images/og-home.jpg" />
-  <meta property="og:url"         content="https://serenitysandsresort.com/index.html" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Serenity Sands Resort">
+  <meta name="twitter:description" content="Luxury coastal resort in Goa, India.">
 
-  <!-- Twitter Card -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Serenity Sands Resort" />
-  <meta name="twitter:description" content="Luxury coastal resort in Goa, India." />
-  <meta name="twitter:image"       content="assets/images/og-home.jpg" />
-
-  <!-- Canonical -->
-
-  <link rel="canonical" href="https://serenitysandsresort.com/index.html" />
-
-  <!-- Favicon -->
-
-  <link rel="icon"             href="assets/images/favicon.ico" />
-  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
-
-  <!-- Design System -->
-
-  <link rel="stylesheet" href="./engine/css/tokens.css" />
-<link rel="stylesheet" href="./engine/css/typography.css" />
-<link rel="stylesheet" href="./engine/css/components.css" />
-  <!-- Preconnect for Google Fonts (loaded by typography.css) -->
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="engine/css/tokens.css">
+  <link rel="stylesheet" href="engine/css/typography.css">
+  <link rel="stylesheet" href="engine/css/components.css">
 
   <style>
-    /* Page-level paint — prevents flash of unstyled background */
-    html, body {
-      margin: 0;
-      padding: 0;
-      background-color: #0A0F1E;
-      min-height: 100vh;
-    }
-    #app:empty {
-      min-height: 100vh;
-    }
+    html, body { margin: 0; padding: 0; background-color: #0A0F1E; min-height: 100vh; }
+    #app:empty { min-height: 100vh; }
   </style>
-
 </head>
 <body>
 
-  <!-- Engine Mount Point -->
-
   <div id="app" role="main" aria-label="Page content" aria-live="polite"></div>
 
-  <!-- Engine Runtime — load order is critical -->
-
-  <script src="./engine/js/aura.js"></script>
-<script src="./engine/js/ui.js"></script>
-<script src="./engine/js/engine.js"></script>
-  
-
-  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-<script>eruda.init();</script>
+  <script src="engine/js/aura.js"></script>
+  <script src="engine/js/ui.js"></script>
+  <script src="engine/js/engine.js"></script>
 
 </body>
 </html>
