@@ -1,0 +1,145 @@
+<!-- ============================================================
+     FILE: components/gallery.html
+     Aura Design System — Gallery Grid Component
+     Variants: masonry-style | uniform grid | featured+grid
+     ============================================================ -->
+
+<section class="gallery section" aria-labelledby="gallery-heading">
+  <div class="container">
+
+```
+<div class="section-header reveal">
+  <p class="t-overline">Our work</p>
+  <h2 class="t-h2" id="gallery-heading">Stories told through imagery</h2>
+</div>
+
+<!-- Gallery: Featured + Grid layout -->
+<div class="gallery__layout reveal">
+
+  <!-- Featured large image -->
+  <div class="gallery__featured img-zoom img-overlay">
+    <img
+      src="[GALLERY_FEATURED]"
+      alt="[GALLERY_ALT_FEATURED]"
+      class="gallery__img"
+      loading="lazy"
+      width="800"
+      height="600"
+    >
+    <div class="gallery__caption">
+      <p class="t-label">Featured</p>
+      <p class="t-body-sm">[Featured caption text]</p>
+    </div>
+  </div>
+
+  <!-- Side grid: 2×2 -->
+  <div class="gallery__side-grid">
+    <div class="gallery__item img-zoom img-overlay">
+      <img src="[GALLERY_IMAGE_2]" alt="[GALLERY_ALT_2]" class="gallery__img" loading="lazy" width="400" height="290">
+      <div class="gallery__caption"><p class="t-label">[Caption 2]</p></div>
+    </div>
+    <div class="gallery__item img-zoom img-overlay">
+      <img src="[GALLERY_IMAGE_3]" alt="[GALLERY_ALT_3]" class="gallery__img" loading="lazy" width="400" height="290">
+      <div class="gallery__caption"><p class="t-label">[Caption 3]</p></div>
+    </div>
+    <div class="gallery__item img-zoom img-overlay">
+      <img src="[GALLERY_IMAGE_4]" alt="[GALLERY_ALT_4]" class="gallery__img" loading="lazy" width="400" height="290">
+      <div class="gallery__caption"><p class="t-label">[Caption 4]</p></div>
+    </div>
+    <div class="gallery__item img-zoom img-overlay gallery__item--more">
+      <img src="[GALLERY_IMAGE_5]" alt="" class="gallery__img" loading="lazy" width="400" height="290" aria-hidden="true">
+      <div class="gallery__more-overlay">
+        <a href="#full-gallery" class="gallery__more-link t-h3" aria-label="View all gallery images">+12 more</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Uniform grid (alternative / below fold) -->
+<ul class="gallery__uniform-grid list-none" role="list" aria-label="Gallery images">
+  <li class="gallery__grid-item img-zoom img-overlay reveal stagger-1">
+    <img src="[GALLERY_GRID_1]" alt="[GALLERY_GRID_ALT_1]" class="gallery__img" loading="lazy" width="360" height="280">
+    <div class="gallery__caption"><p class="t-label">[Caption]</p></div>
+  </li>
+  <li class="gallery__grid-item img-zoom img-overlay reveal stagger-2">
+    <img src="[GALLERY_GRID_2]" alt="[GALLERY_GRID_ALT_2]" class="gallery__img" loading="lazy" width="360" height="280">
+    <div class="gallery__caption"><p class="t-label">[Caption]</p></div>
+  </li>
+  <li class="gallery__grid-item img-zoom img-overlay reveal stagger-3">
+    <img src="[GALLERY_GRID_3]" alt="[GALLERY_GRID_ALT_3]" class="gallery__img" loading="lazy" width="360" height="280">
+    <div class="gallery__caption"><p class="t-label">[Caption]</p></div>
+  </li>
+  <li class="gallery__grid-item img-zoom img-overlay reveal stagger-4">
+    <img src="[GALLERY_GRID_4]" alt="[GALLERY_GRID_ALT_4]" class="gallery__img" loading="lazy" width="360" height="280">
+    <div class="gallery__caption"><p class="t-label">[Caption]</p></div>
+  </li>
+</ul>
+
+<div class="gallery__footer reveal">
+  <a href="#full-gallery" class="btn btn--outline">View full gallery</a>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- Lightbox overlay (activates on gallery item click) -->
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+  <button class="lightbox__close btn btn--ghost" aria-label="Close image viewer">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <div class="lightbox__content">
+    <img src="" alt="" class="lightbox__img" id="lightbox-img">
+    <p class="lightbox__caption t-caption" id="lightbox-caption"></p>
+  </div>
+  <button class="lightbox__prev" aria-label="Previous image">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M15 4l-8 8 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <button class="lightbox__next" aria-label="Next image">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M9 4l8 8-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+(function() {
+  const lightbox = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lightbox-img');
+  const lbCap    = document.getElementById('lightbox-caption');
+  const items    = document.querySelectorAll('.gallery__item:not(.gallery__item--more), .gallery__grid-item');
+
+  function openLightbox(img, caption) {
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCap.textContent = caption || img.alt;
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+    lightbox.querySelector('.lightbox__close').focus();
+  }
+
+  function closeLightbox() {
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  items.forEach(item => {
+    item.style.cursor = 'pointer';
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      const cap = item.querySelector('.t-label')?.textContent;
+      openLightbox(img, cap);
+    });
+  });
+
+  lightbox.querySelector('.lightbox__close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+})();
+</script>
