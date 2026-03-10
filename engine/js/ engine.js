@@ -39,8 +39,11 @@ Resolves relative paths for both local dev and GitHub Pages.
 ––––––––––––––––––––––––––––– */
 
 const resolvePath = (() => {
-const scriptEl  = document.currentScript ||
-Array.from(document.querySelectorAll(‘script[src]’)).find(s => s.src.includes(‘engine.js’));
+  const pageUrl = window.location.href.split('?')[0].split('#')[0];
+  const pageDir = pageUrl.substring(0, pageUrl.lastIndexOf('/') + 1);
+  return (relativePath) => new URL(relativePath, pageDir).href;
+})();
+
 
 const scriptDir = scriptEl
 ? scriptEl.src.substring(0, scriptEl.src.lastIndexOf(’/’) + 1)
