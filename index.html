@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080D1A">
+
+  <!--
+    APEX Website Engine v2
+    Single-page entry point. All pages are rendered dynamically
+    by engine.js using ?page= query routing.
+    No other HTML files are needed.
+  -->
+
+  <title>Serenity Sands Resort</title>
+  <meta name="description" content="Experience comfort, nature, and luxury at Serenity Sands Resort — one of India's most relaxing coastal destinations in Goa.">
+
+  <!-- Open Graph -->
+
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Serenity Sands Resort">
+  <meta property="og:description" content="Luxury beach resort in Goa, India.">
+  <meta property="og:url"         content="https://anush-bengani.github.io/Apex-Web-Engine/">
+
+  <!-- Twitter Card -->
+
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Serenity Sands Resort">
+  <meta name="twitter:description" content="Luxury beach resort in Goa, India.">
+
+  <!-- Design System -->
+
+  <link rel="stylesheet" href="engine/css/tokens.css">
+  <link rel="stylesheet" href="engine/css/typography.css">
+  <link rel="stylesheet" href="engine/css/components.css">
+
+  <style>
+    /* Paint prevents flash of unstyled background */
+    html, body { background: #080D1A; min-height: 100vh; }
+    #app { min-height: 100vh; }
+  </style>
+
+</head>
+<body>
+
+  <!-- Scroll progress bar (injected by UI) -->
+
+  <div id="apex-progress" aria-hidden="true"></div>
+
+  <!-- Engine mount point — all pages render here -->
+
+  <main id="app" role="main" aria-label="Page content" aria-live="polite"></main>
+
+  <!-- Scroll to top button (injected by UI) -->
+
+<button id="apex-stt" aria-label="Scroll to top" hidden>↑</button>
+
+  <!--
+    Engine Runtime — load order is CRITICAL:
+    1. aura.js   — DOM utilities (no dependencies)
+    2. ui.js     — UI interactions (depends on Aura)
+    3. engine.js — Core renderer (depends on Aura + UI)
+  -->
+
+  <script src="engine/js/aura.js"></script>
+
+  <script src="engine/js/ui.js"></script>
+
+  <script src="engine/js/engine.js"></script>
+
+</body>
+</html>
