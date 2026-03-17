@@ -1,0 +1,20 @@
+{
+  "site": {
+    "name": "Serenity Sands Resort",
+    "industry": "hospitality"
+  },
+  "navigation": [
+    { "label": "Home",      "page": "home",      "href": "index.html" },
+    { "label": "Rooms",     "page": "rooms",     "href": "index.html?page=rooms" },
+    { "label": "Amenities", "page": "amenities", "href": "index.html?page=amenities" },
+    { "label": "Gallery",   "page": "gallery",   "href": "index.html?page=gallery" },
+    { "label": "Contact",   "page": "contact",   "href": "index.html?page=contact" }
+  ],
+  "pages": {
+    "home":      ["navbar","hero","feature-cards","service-cards","testimonials","cta-banner","footer"],
+    "rooms":     ["navbar","hero","feature-cards","product-cards","cta-banner","footer"],
+    "amenities": ["navbar","hero","service-cards","gallery","cta-banner","footer"],
+    "gallery":   ["navbar","gallery","cta-banner","footer"],
+    "contact":   ["navbar","contact-form","footer"]
+  }
+}
