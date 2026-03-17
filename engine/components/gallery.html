@@ -1,0 +1,39 @@
+<section class="section" aria-labelledby="gallery-title">
+  <div class="container">
+    <div class="section__header animate-fade-up">
+      <span class="section-label" data-content="gallery.label"></span>
+      <h2 class="section__title" id="gallery-title" data-content="gallery.title"></h2>
+      <p class="section__subtitle" data-content="gallery.subtitle"></p>
+    </div>
+    <div class="gallery__grid">
+      <div class="gallery__item animate-fade-up delay-1" data-action="open-lightbox" tabindex="0" role="button" aria-label="View photo 1">
+        <div class="gallery__item-placeholder">🏖</div>
+        <div class="gallery__item-cap" data-content="gallery.image1.caption"></div>
+      </div>
+      <div class="gallery__item animate-fade-up delay-2" data-action="open-lightbox" tabindex="0" role="button" aria-label="View photo 2">
+        <div class="gallery__item-placeholder">🏊</div>
+        <div class="gallery__item-cap" data-content="gallery.image2.caption"></div>
+      </div>
+      <div class="gallery__item animate-fade-up delay-3" data-action="open-lightbox" tabindex="0" role="button" aria-label="View photo 3">
+        <div class="gallery__item-placeholder">🛏</div>
+        <div class="gallery__item-cap" data-content="gallery.image3.caption"></div>
+      </div>
+      <div class="gallery__item animate-fade-up delay-1" data-action="open-lightbox" tabindex="0" role="button" aria-label="View photo 4">
+        <div class="gallery__item-placeholder">🍽</div>
+        <div class="gallery__item-cap" data-content="gallery.image4.caption"></div>
+      </div>
+      <div class="gallery__item animate-fade-up delay-2" data-action="open-lightbox" tabindex="0" role="button" aria-label="View photo 5">
+        <div class="gallery__item-placeholder">💆</div>
+        <div class="gallery__item-cap" data-content="gallery.image5.caption"></div>
+      </div>
+      <div class="gallery__item animate-fade-up delay-3" data-action="open-lightbox" tabindex="0" role="button" aria-label="View photo 6">
+        <div class="gallery__item-placeholder">🌴</div>
+        <div class="gallery__item-cap" data-content="gallery.image6.caption"></div>
+      </div>
+    </div>
+  </div>
+  <div class="lightbox" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lightbox__close" id="gallery-lightbox-close" aria-label="Close photo viewer">&#10005;</button>
+    <img id="gallery-lightbox-img" src="" alt="" class="lightbox__img">
+  </div>
+</section>
